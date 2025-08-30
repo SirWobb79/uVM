@@ -1,0 +1,31 @@
+!notInit
+    jmp init
+
+!init
+    set 1000 0a 00
+    set 1010 2a 00
+    set 1011 3d 00
+    set 1012 20 00
+    
+    inp 1001 00
+    inp 1002 00
+    cpy 1002 1020 00
+
+!multiply_loop
+    dec 1002 00
+    add 1003 1001 00
+    jnz multiply_loop 1002 00
+
+out 1001 01 00
+out 1010 00 00
+out 1020 01 00
+out 1011 00 00
+out 1003 01 00
+
+out 1000 00 00
+out 1000 00 00
+set 1003 00 00
+
+jnz init 1001 00
+jnz init 1002 00
+hlt
